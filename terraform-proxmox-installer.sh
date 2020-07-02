@@ -4,7 +4,7 @@ dnf install -y wget unzip
 dnf install -y golang
 dnf install -y make
 
-cd /opt
+cd /opt || exit 1
 
 if [[ ! -f /usr/local/bin/terraform ]]; then
     wget https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
@@ -12,7 +12,7 @@ if [[ ! -f /usr/local/bin/terraform ]]; then
 fi
 
 git clone https://github.com/Telmate/terraform-provider-proxmox.git
-cd terraform-provider-proxmox
+cd terraform-provider-proxmox || exit 1
 
 go install github.com/Telmate/terraform-provider-proxmox/cmd/terraform-provider-proxmox
 go install github.com/Telmate/terraform-provider-proxmox/cmd/terraform-provisioner-proxmox
