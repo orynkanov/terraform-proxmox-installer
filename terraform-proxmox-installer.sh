@@ -1,14 +1,26 @@
 #!/bin/bash
 
-dnf install -y wget unzip
-dnf install -y golang
-dnf install -y make
+if [[ ! -f /etc/centos-release ]]; then
+    echo OS not CentOS. This script only for CentOS!
+    exit 1
+fi
+
+OSVER=$(grep -o '[0-9]' /etc/centos-release | head -n1)
+if [[ $OSVER -eq 7 ]]; then
+    yum install -y wget unzip
+    yum install -y golang
+    yum install -y make
+elif [[ $OSVER -eq 8 ]]; then
+    dnf install -y wget unzip
+    dnf install -y golang
+    dnf install -y make
+fi
 
 cd /opt || exit 1
 
 if [[ ! -f /usr/local/bin/terraform ]]; then
-    wget https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
-    unzip terraform_*_linux_amd64.zip -d /usr/local/bin
+    wget https://releases.hashicorp.com/terraform/0.13.1/terraform_0.13.1_linux_amd64.zip
+    unzip terraform_0.13.1_linux_amd64.zip -d /usr/local/bin
     terraform version
 fi
 
