@@ -19,8 +19,8 @@ fi
 cd /opt || exit 1
 
 if [[ ! -f /usr/local/bin/terraform ]]; then
-    wget https://releases.hashicorp.com/terraform/0.13.1/terraform_0.13.1_linux_amd64.zip
-    unzip terraform_0.13.1_linux_amd64.zip -d /usr/local/bin
+    wget https://releases.hashicorp.com/terraform/0.13.5/terraform_0.13.5_linux_amd64.zip
+    unzip terraform_0.13.5_linux_amd64.zip -d /usr/local/bin
     terraform version
 fi
 
