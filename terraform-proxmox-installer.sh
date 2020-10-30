@@ -7,10 +7,15 @@ fi
 
 OSVER=$(grep -o '[0-9]' /etc/centos-release | head -n1)
 if [[ $OSVER -eq 7 ]]; then
+    yum remove -y git
+    yum install -y https://repo.ius.io/ius-release-el7.rpm
+    yum install -y git224
     yum install -y wget unzip
     yum install -y golang
     yum install -y make
 elif [[ $OSVER -eq 8 ]]; then
+    #dnf remove -y git
+    #need install git => 2.22
     dnf install -y wget unzip
     dnf install -y golang
     dnf install -y make
